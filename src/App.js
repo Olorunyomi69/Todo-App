@@ -2,6 +2,8 @@ import { useState } from "react";
 import Header from "./Header";
 import Tasks from "./Tasks";
 import AddTask from "./AddTask";
+import TaskProgress from './TaskProgress'
+ 
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -49,14 +51,17 @@ function App() {
   };
 
   return (
-    <div className="Container">
+    <div className="container">
       <Header
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
+        <div>
+<TaskProgress/>
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
+        </div>
       ) : (
         "The best time to plant a tree was 20 years ago. The second best time is now. - Chinese Proverb"
       )}
